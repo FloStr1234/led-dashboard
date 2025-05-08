@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mein LED Dashboard</title>
+  <link rel="icon" href="led-icon.png">
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    button {
+      padding: 20px;
+      font-size: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>LED Steuerung</h1>
+  <button onclick="toggleLED()">LED AN/AUS</button>
+
+  <script>
+    function toggleLED() {
+      fetch('http://deine-ip-adresse/led', { method: 'POST' }) // z.B. ESP32-HTTP-Server
+        .then(response => response.text())
+        .then(result => alert("Antwort vom Gerät: " + result))
+        .catch(error => alert("Fehler: " + error));
+    }
+  </script>
+</body>
+</html>
